@@ -36,14 +36,15 @@
             background-color: rgba(0, 0, 0, 0.7); /* Transparência para fundo */
             padding: 30px;
             border-radius: 10px;
-            width: 400px;
+            width: 90%; /* Adapta o popup a telas menores */
+            max-width: 400px; /* Limita o tamanho máximo */
             text-align: center;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
 
         .popup-content h2 {
             color: #e0e0e0;
-            font-size: 2rem;
+            font-size: 1.8rem; /* Menor tamanho para melhor visualização */
             margin-bottom: 20px;
             font-family: 'Roboto', sans-serif;
         }
@@ -109,6 +110,47 @@
 
         #copy-button:hover {
             background-color: #e6b800;
+        }
+
+        /* Responsividade para dispositivos móveis */
+        @media (max-width: 600px) {
+            .popup-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .popup-content input {
+                font-size: 1rem;
+                padding: 12px;
+            }
+
+            .popup-content button {
+                font-size: 1rem;
+                padding: 12px;
+            }
+
+            #payment-code {
+                font-size: 1rem;
+            }
+
+            #copy-button {
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .popup-content {
+                padding: 20px;
+            }
+
+            .popup-content h2 {
+                font-size: 1.4rem;
+            }
+
+            .popup-content input,
+            .popup-content button {
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
