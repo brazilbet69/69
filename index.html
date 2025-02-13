@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrazilBet - Slot Game</title>
+    <style>
+        /* Reset de margens e padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilo de fundo */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #121212; /* Fundo escuro */
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('giphy.gif') no-repeat center center fixed;
+            background-size: cover;
+            animation: backgroundAnimation 10s ease-in-out infinite;
+        }
+
+        @keyframes backgroundAnimation {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        /* Popup geral */
+        .popup-content {
+            background-color: rgba(0, 0, 0, 0.7); /* Transparência para fundo */
+            padding: 30px;
+            border-radius: 10px;
+            width: 400px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .popup-content h2 {
+            color: #e0e0e0;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .popup-content input {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #333;
+            font-size: 1rem;
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+        }
+
+        .popup-content button {
+            width: 100%;
+            padding: 15px;
+            background-color: #00A859; /* Verde para destaque */
+            color: white;
+            border: none;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .popup-content button:hover {
+            background-color: #e6b800; /* Cor dourada */
+        }
+
+        /* Estilo para a mensagem de desbloqueio */
+        .unlock-message {
+            color: #e0e0e0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+
+        /* Estilo para o QR Code e código de pagamento */
+        #qrcode {
+            margin-top: 20px;
+        }
+
+        #payment-code {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #e0e0e0;
+        }
+
+        #copy-button {
+            margin-top: 15px;
+            padding: 12px;
+            background-color: #00A859;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        #copy-button:hover {
+            background-color: #e6b800;
+        }
+    </style>
+</head>
+<body>
+    <!-- Pop-up de Cadastro -->
+    <div id="signup-popup">
+        <div class="popup-content">
+            <h2>Cadastro</h2>
+            <form id="signup-form">
+                <input type="text" id="cpf" placeholder="CPF" required>
+                <input type="text" id="username" placeholder="Nome de usuário" required>
+                <input type="password" id="password" placeholder="Senha (6 dígitos)" required minlength="6">
+                <button type="submit">Cadastrar e Ganhar Bônus</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Pop-up de Pagamento -->
+    <div id="payment-popup" style="display:none;">
+        <div class="popup-content">
+            <h2>Realize seu pagamento</h2>
+            <p>Escaneie o QR Code ou copie o código abaixo para realizar o pagamento.</p>
+            
+            <div id="qrcode">
+                <img src="code.png" alt="QR Code" width="128" height="128">
+            </div>
+            
+            <div id="payment-code">
+                c5e7bacf-d2b0-4bd7-a17d-146c62d18d8f
+            </div>
+
+            <button id="copy-button" onclick="copyCode()">Copiar chave PIX</button>
+        </div>
+    </div>
+
+    <script>
+        // Mostrar o pop-up de cadastro ao carregar a página
+        window.onload = function() {
+            document.getElementById("signup-popup").style.display = "flex";
+        };
+
+        // Processar o formulário de cadastro
+        document.getElementById("signup-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Impedir o envio do formulário
+
+            const cpf = document.getElementById("cpf").value;
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Aqui você pode fazer a validação de CPF, salvar o cadastro em uma base de dados ou outro processo
+            alert(`Cadastro realizado com sucesso! ${username}, você ganhou R$200 de bônus!`);
+
+            // Fechar o pop-up de cadastro
+            document.getElementById("signup-popup").style.display = "none";
+            
+            // Mostrar o pop-up de pagamento
+            document.getElementById("payment-popup").style.display = "flex";
+        });
+
+        // Função para copiar o código de pagamento
+        function copyCode() {
+            const code = document.getElementById("payment-code").innerText;
+            const textarea = document.createElement("textarea");
+            textarea.value = code;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textarea);
+            alert("Código de pagamento copiado!");
+        }
+    </script>
+</body>
+</html>
